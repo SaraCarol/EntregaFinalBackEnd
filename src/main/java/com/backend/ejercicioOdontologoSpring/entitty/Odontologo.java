@@ -1,19 +1,25 @@
 package com.backend.ejercicioOdontologoSpring.entitty;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "ODONTOLOGOS")
 public class Odontologo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 10, nullable = false)
     private int numeroMatricula;
+    @Column(length = 20, nullable = false)
     private String apellido;
+    @Column(length = 20, nullable = false)
     private String nombre;
+
+    public Odontologo() {
+    }
 
     public Odontologo(Long id, int numeroMatricula, String apellido, String nombre) {
         this.id = id;
-        this.numeroMatricula = numeroMatricula;
-        this.apellido = apellido;
-        this.nombre = nombre;
-    }
-
-    public Odontologo(int numeroMatricula, String apellido, String nombre) {
         this.numeroMatricula = numeroMatricula;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -51,13 +57,4 @@ public class Odontologo {
         this.nombre = nombre;
     }
 
-    @Override
-    public String toString() {
-        return "Odontologo{" +
-                "id: " + id +
-                ", numeroMatricula: " + numeroMatricula +
-                ", apellido: '" + apellido + '\'' +
-                ", nombre: '" + nombre + '\'' +
-                '}';
-    }
 }

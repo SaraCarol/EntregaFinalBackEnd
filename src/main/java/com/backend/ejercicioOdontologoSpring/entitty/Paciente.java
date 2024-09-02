@@ -1,25 +1,28 @@
 package com.backend.ejercicioOdontologoSpring.entitty;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
+@Entity
+@Table(name = "PACIENTES")
 public class Paciente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 20, nullable = false)
     private String nombre;
+    @Column(length = 20, nullable = false)
     private String apellido;
+    @Column(length = 20, nullable = false)
     private int dni;
     private LocalDate fechaIngreso;
     private Domicilio domicilio;
 
-    public Paciente(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.fechaIngreso = fechaIngreso;
-        this.domicilio = domicilio;
+    public Paciente() {
     }
 
-    public Paciente(String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
+    public Paciente(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -75,13 +78,4 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    @Override
-    public String toString() {
-        return "Id: " + id +
-                " - Nombre: " + nombre +
-                " - Apellido: " + apellido +
-                " - DNI: " + dni +
-                " - Fechas de ingreso: " + fechaIngreso +
-                " - Domicilio: " + domicilio;
-    }
 }
