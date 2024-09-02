@@ -2,7 +2,6 @@ package com.backend.ejercicioOdontologoSpring.controller;
 
 import com.backend.ejercicioOdontologoSpring.dto.entrada.PacienteDtoEntrada;
 import com.backend.ejercicioOdontologoSpring.dto.salida.PacienteDtoSalida;
-import com.backend.ejercicioOdontologoSpring.entitty.Paciente;
 import com.backend.ejercicioOdontologoSpring.service.IPacienteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

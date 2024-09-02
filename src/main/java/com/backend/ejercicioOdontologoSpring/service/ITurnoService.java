@@ -1,8 +1,6 @@
 package com.backend.ejercicioOdontologoSpring.service;
 
-import com.backend.ejercicioOdontologoSpring.dto.entrada.OdontologoDtoEntrada;
 import com.backend.ejercicioOdontologoSpring.dto.entrada.TurnoDtoEntrada;
-import com.backend.ejercicioOdontologoSpring.dto.salida.OdontologoDtoSalida;
 import com.backend.ejercicioOdontologoSpring.dto.salida.TurnoDtoSalida;
 
 import java.util.List;

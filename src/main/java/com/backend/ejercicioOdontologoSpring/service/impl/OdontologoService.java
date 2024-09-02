@@ -2,9 +2,7 @@ package com.backend.ejercicioOdontologoSpring.service.impl;
 
 import com.backend.ejercicioOdontologoSpring.dto.entrada.OdontologoDtoEntrada;
 import com.backend.ejercicioOdontologoSpring.dto.salida.OdontologoDtoSalida;
-import com.backend.ejercicioOdontologoSpring.dto.salida.PacienteDtoSalida;
 import com.backend.ejercicioOdontologoSpring.entitty.Odontologo;
-import com.backend.ejercicioOdontologoSpring.entitty.Paciente;
 import com.backend.ejercicioOdontologoSpring.repository.OdontologoRepository;
 import com.backend.ejercicioOdontologoSpring.service.IOdontologoService;
 import com.backend.ejercicioOdontologoSpring.utils.JsonPrinter;
