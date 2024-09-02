@@ -1,12 +1,25 @@
 package com.backend.ejercicioOdontologoSpring.entitty;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
+@Entity
+@Table(name = "TURNOS")
 public class Turno {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "odontologo_id")
     private Odontologo odontologo;
+    @Column(length = 20, nullable = false)
     private LocalDate fechaTurno;
+
+    public Turno() {
+    }
 
     public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDate fechaTurno) {
         this.id = id;
