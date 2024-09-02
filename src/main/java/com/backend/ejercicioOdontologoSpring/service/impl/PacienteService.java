@@ -47,7 +47,7 @@ public class PacienteService implements IPacienteService {
         PacienteDtoSalida pacienteDtoSalida = null;
         if(pacienteBuscado != null){
             pacienteDtoSalida = modelMapper.map(pacienteBuscado, PacienteDtoSalida.class);
-            LOGGER.info("Paciente encontrado: {]", JsonPrinter.toString(pacienteDtoSalida));
+            LOGGER.info("Paciente encontrado: {}", JsonPrinter.toString(pacienteDtoSalida));
         } else LOGGER.error("No se ha encontrado al paciente con id: {}", id);
 
         return pacienteDtoSalida;
@@ -87,7 +87,7 @@ public class PacienteService implements IPacienteService {
     public void eliminarPaciente(Long id) {
         if(buscarPacientePorId(id) != null){
             pacienteRepository.deleteById(id);
-            LOGGER.warn("Se ha eliminado correctamete al paciende con id: {}", id);
+            LOGGER.warn("Se ha eliminado correctamete al paciente con id: {}", id);
         } else {
             //excepción personalizada
             LOGGER.info("Excepcion");
