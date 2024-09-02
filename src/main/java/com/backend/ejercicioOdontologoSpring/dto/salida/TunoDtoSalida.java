@@ -7,7 +7,9 @@ public class TunoDtoSalida {
     private TurnoOdontologoDtoSalida odontologoSalida;
     private TurnoPacienteDtoSalida pacienteDtoSalida;
     private LocalDate fechaTurno;
+    private LocalDate horaTurno;
 
     public TunoDtoSalida() {
     }
+    
 }
