@@ -75,7 +75,7 @@ public class OdontologoService implements IOdontologoService {
 
             odontologoDtoSalida = modelMapper.map(odontologoPorActualizar, OdontologoDtoSalida.class);
             LOGGER.warn("Odontólogo actualizado: {}", odontologoDtoSalida);
-            
+
         } else LOGGER.error("No se pudo actualizar el odontólogo porque no se encuentra registrado");
         return odontologoDtoSalida;
     }
