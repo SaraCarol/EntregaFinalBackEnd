@@ -2,6 +2,7 @@ package com.backend.ejercicioOdontologoSpring.service;
 
 import com.backend.ejercicioOdontologoSpring.dto.entrada.TurnoDtoEntrada;
 import com.backend.ejercicioOdontologoSpring.dto.salida.TurnoDtoSalida;
+import com.backend.ejercicioOdontologoSpring.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface ITurnoService {
 
     TurnoDtoSalida actualizarTurno(TurnoDtoEntrada turnoDtoEntrada, Long id);
 
-    void eliminarTurno(Long id);
+    void eliminarTurno(Long id) throws ResourceNotFoundException;
 }

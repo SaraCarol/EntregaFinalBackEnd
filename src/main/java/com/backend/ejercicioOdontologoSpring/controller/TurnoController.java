@@ -2,6 +2,7 @@ package com.backend.ejercicioOdontologoSpring.controller;
 
 import com.backend.ejercicioOdontologoSpring.dto.entrada.TurnoDtoEntrada;
 import com.backend.ejercicioOdontologoSpring.dto.salida.TurnoDtoSalida;
+import com.backend.ejercicioOdontologoSpring.exceptions.ResourceNotFoundException;
 import com.backend.ejercicioOdontologoSpring.service.ITurnoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class TurnoController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<String> eliminarTurno(@PathVariable Long id){
+    public ResponseEntity<String> eliminarTurno(@PathVariable Long id) throws ResourceNotFoundException {
         return new ResponseEntity<>("Turno eliminado con éxito", HttpStatus.NO_CONTENT);
     }
 }

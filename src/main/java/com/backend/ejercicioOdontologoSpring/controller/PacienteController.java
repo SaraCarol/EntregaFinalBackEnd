@@ -2,6 +2,7 @@ package com.backend.ejercicioOdontologoSpring.controller;
 
 import com.backend.ejercicioOdontologoSpring.dto.entrada.PacienteDtoEntrada;
 import com.backend.ejercicioOdontologoSpring.dto.salida.PacienteDtoSalida;
+import com.backend.ejercicioOdontologoSpring.exceptions.ResourceNotFoundException;
 import com.backend.ejercicioOdontologoSpring.service.IPacienteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class PacienteController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<String> eliminarPaciente(@PathVariable Long id){
+    public ResponseEntity<String> eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         return new ResponseEntity<>("Paciente eliminado con éxito", HttpStatus.NO_CONTENT);
     }
 }

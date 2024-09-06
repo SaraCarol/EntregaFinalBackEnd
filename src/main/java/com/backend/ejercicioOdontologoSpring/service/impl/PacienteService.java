@@ -3,6 +3,7 @@ package com.backend.ejercicioOdontologoSpring.service.impl;
 import com.backend.ejercicioOdontologoSpring.dto.entrada.PacienteDtoEntrada;
 import com.backend.ejercicioOdontologoSpring.dto.salida.PacienteDtoSalida;
 import com.backend.ejercicioOdontologoSpring.entitty.Paciente;
+import com.backend.ejercicioOdontologoSpring.exceptions.ResourceNotFoundException;
 import com.backend.ejercicioOdontologoSpring.repository.PacienteRepository;
 import com.backend.ejercicioOdontologoSpring.service.IPacienteService;
 import com.backend.ejercicioOdontologoSpring.utils.JsonPrinter;
@@ -84,13 +85,12 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public void eliminarPaciente(Long id) {
+    public void eliminarPaciente(Long id) throws ResourceNotFoundException {
         if(buscarPacientePorId(id) != null){
             pacienteRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado correctamete al paciente con id: {}", id);
         } else {
-            //excepción personalizada
-            LOGGER.info("Excepcion");
+            throw new ResourceNotFoundException("No existe el paciente con id " + id);
         };
     }
 

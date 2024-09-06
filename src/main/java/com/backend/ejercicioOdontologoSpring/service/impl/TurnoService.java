@@ -3,6 +3,7 @@ package com.backend.ejercicioOdontologoSpring.service.impl;
 import com.backend.ejercicioOdontologoSpring.dto.entrada.TurnoDtoEntrada;
 import com.backend.ejercicioOdontologoSpring.dto.salida.TurnoDtoSalida;
 import com.backend.ejercicioOdontologoSpring.entitty.Turno;
+import com.backend.ejercicioOdontologoSpring.exceptions.ResourceNotFoundException;
 import com.backend.ejercicioOdontologoSpring.repository.TurnoRepository;
 import com.backend.ejercicioOdontologoSpring.service.ITurnoService;
 import com.backend.ejercicioOdontologoSpring.utils.JsonPrinter;
@@ -70,13 +71,12 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public void eliminarTurno(Long id) {
+    public void eliminarTurno(Long id) throws ResourceNotFoundException {
         if(buscarTurnoPorId(id) != null){
             turnoRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado correctamete al turno con id: {}", id);
         } else {
-            //excepción personalizada
-            LOGGER.info("Excepcion");
+            throw new ResourceNotFoundException("No existe el turno con id " + id);
         };
     }
 

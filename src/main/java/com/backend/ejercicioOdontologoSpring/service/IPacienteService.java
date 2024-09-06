@@ -2,6 +2,7 @@ package com.backend.ejercicioOdontologoSpring.service;
 
 import com.backend.ejercicioOdontologoSpring.dto.entrada.PacienteDtoEntrada;
 import com.backend.ejercicioOdontologoSpring.dto.salida.PacienteDtoSalida;
+import com.backend.ejercicioOdontologoSpring.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ public interface IPacienteService {
     List<PacienteDtoSalida> listarPacientes();
     PacienteDtoSalida actualizarPaciente(PacienteDtoEntrada pacienteDtoEntrada, Long id);
 
-    void eliminarPaciente(Long id);
+    void eliminarPaciente(Long id) throws ResourceNotFoundException;
 }
