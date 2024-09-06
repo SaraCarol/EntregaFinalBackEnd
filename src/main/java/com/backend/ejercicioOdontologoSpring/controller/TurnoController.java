@@ -43,5 +43,6 @@ public class TurnoController {
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarTurno(@PathVariable Long id) throws ResourceNotFoundException {
         return new ResponseEntity<>("Turno eliminado con éxito", HttpStatus.NO_CONTENT);
+
     }
 }
