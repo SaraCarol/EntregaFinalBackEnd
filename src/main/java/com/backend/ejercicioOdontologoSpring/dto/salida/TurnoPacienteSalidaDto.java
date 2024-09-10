@@ -1,15 +1,17 @@
 package com.backend.ejercicioOdontologoSpring.dto.salida;
 
-public class TurnoPacienteDtoSalida {
+public class TurnoPacienteSalidaDto {
+    private Long id;
     private String nombre;
     private String apellido;
 
-    public TurnoPacienteDtoSalida() {
+    public TurnoPacienteSalidaDto() {
     }
 
-    public TurnoPacienteDtoSalida(String nombre, String apellido) {
+    public TurnoPacienteSalidaDto(String nombre, String apellido, Long id) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -27,4 +29,9 @@ public class TurnoPacienteDtoSalida {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+    public Long getid() {
+        return id;
+    }
 }
+
+

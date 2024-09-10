@@ -1,7 +1,7 @@
 package com.backend.ejercicioOdontologoSpring.service.impl;
 
-import com.backend.ejercicioOdontologoSpring.dto.entrada.OdontologoDtoEntrada;
-import com.backend.ejercicioOdontologoSpring.dto.salida.OdontologoDtoSalida;
+import com.backend.ejercicioOdontologoSpring.dto.entrada.OdontologoEntradaDto;
+import com.backend.ejercicioOdontologoSpring.dto.salida.OdontologoSalidaDto;
 import com.backend.ejercicioOdontologoSpring.entitty.Odontologo;
 import com.backend.ejercicioOdontologoSpring.repository.OdontologoRepository;
 import com.backend.ejercicioOdontologoSpring.service.IOdontologoService;
@@ -26,56 +26,56 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public OdontologoDtoSalida registrarOdontologo(OdontologoDtoEntrada odontologoDtoEntrada) {
+    public OdontologoSalidaDto registrarOdontologo(OdontologoEntradaDto odontologoDtoEntrada) {
         LOGGER.info("OdontologoDtoEntrada: {}", JsonPrinter.toString(odontologoDtoEntrada));
         Odontologo odontologo = modelMapper.map(odontologoDtoEntrada, Odontologo.class);
         LOGGER.info("Odontologo Entidad: {}", JsonPrinter.toString(odontologo));
         Odontologo odontologoRegistrado = odontologoRepository.save(odontologo);
         LOGGER.info("Odontologo Registrado: {}", JsonPrinter.toString(odontologoRegistrado));
-        OdontologoDtoSalida odontologoDtoSalida = modelMapper.map(odontologoRegistrado, OdontologoDtoSalida.class);
-        LOGGER.info("OdontologoDtoSalida: {}", JsonPrinter.toString(odontologoDtoSalida));
+        OdontologoSalidaDto odontologoSalidaDto = modelMapper.map(odontologoRegistrado, OdontologoSalidaDto.class);
+        LOGGER.info("OdontologoDtoSalida: {}", JsonPrinter.toString(odontologoSalidaDto));
 
-        return odontologoDtoSalida;
+        return odontologoSalidaDto;
     }
 
     @Override
-    public List<OdontologoDtoSalida> listarOdontologos() {
-        List<OdontologoDtoSalida> odontologoDtoSalidas = odontologoRepository.findAll()
+    public List<OdontologoSalidaDto> listarOdontologos() {
+        List<OdontologoSalidaDto> odontologoSalidaDtos = odontologoRepository.findAll()
                 .stream()
-                .map(odontologo -> modelMapper.map(odontologo, OdontologoDtoSalida.class))
+                .map(odontologo -> modelMapper.map(odontologo, OdontologoSalidaDto.class))
                 .toList();
-        LOGGER.info("Lista de odontólogos: {}", JsonPrinter.toString(odontologoDtoSalidas));
-        return odontologoDtoSalidas;
+        LOGGER.info("Lista de odontólogos: {}", JsonPrinter.toString(odontologoSalidaDtos));
+        return odontologoSalidaDtos;
     }
 
     @Override
-    public OdontologoDtoSalida buscarOdontologoPorId(Long id) {
+    public OdontologoSalidaDto buscarOdontologoPorId(Long id) {
         Odontologo odontologoBuscado = odontologoRepository.findById(id).orElse(null);
         LOGGER.info("Odontologo buscado: {}", JsonPrinter.toString(odontologoBuscado));
-        OdontologoDtoSalida odontologoDtoSalida = null;
+        OdontologoSalidaDto odontologoSalidaDto = null;
         if(odontologoBuscado != null){
-            odontologoDtoSalida = modelMapper.map(odontologoBuscado, OdontologoDtoSalida.class);
+            odontologoSalidaDto = modelMapper.map(odontologoBuscado, OdontologoSalidaDto.class);
             LOGGER.info("Odontologo encontrado: {]", JsonPrinter.toString(odontologoBuscado));
         } else LOGGER.error("No se ha encontrado al odontologo con id: {}", id);
-        return odontologoDtoSalida;
+        return odontologoSalidaDto;
     }
 
     @Override
-    public OdontologoDtoSalida actualizarOdontologo(OdontologoDtoEntrada odontologoDtoEntrada, Long id) {
+    public OdontologoSalidaDto actualizarOdontologo(OdontologoEntradaDto odontologoDtoEntrada, Long id) {
         Odontologo odontologoPorActualizar = odontologoRepository.findById(id).orElse(null);
         Odontologo odontologoRecibido = modelMapper.map(odontologoDtoEntrada, Odontologo.class);
-        OdontologoDtoSalida odontologoDtoSalida = null;
+        OdontologoSalidaDto odontologoSalidaDto = null;
 
         if(odontologoPorActualizar != null){
             odontologoRecibido.setId(odontologoPorActualizar.getId());
             odontologoPorActualizar = odontologoRecibido;
             odontologoRepository.save(odontologoPorActualizar);
 
-            odontologoDtoSalida = modelMapper.map(odontologoPorActualizar, OdontologoDtoSalida.class);
-            LOGGER.warn("Odontólogo actualizado: {}", odontologoDtoSalida);
+            odontologoSalidaDto = modelMapper.map(odontologoPorActualizar, OdontologoSalidaDto.class);
+            LOGGER.warn("Odontólogo actualizado: {}", odontologoSalidaDto);
 
         } else LOGGER.error("No se pudo actualizar el odontólogo porque no se encuentra registrado");
-        return odontologoDtoSalida;
+        return odontologoSalidaDto;
     }
 
     @Override

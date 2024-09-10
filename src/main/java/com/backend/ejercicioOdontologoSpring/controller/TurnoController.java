@@ -1,14 +1,13 @@
 package com.backend.ejercicioOdontologoSpring.controller;
 
-import com.backend.ejercicioOdontologoSpring.dto.entrada.TurnoDtoEntrada;
-import com.backend.ejercicioOdontologoSpring.dto.salida.TurnoDtoSalida;
+import com.backend.ejercicioOdontologoSpring.dto.entrada.TurnoEntradaDto;
+import com.backend.ejercicioOdontologoSpring.dto.salida.TurnoSalidaDto;
 import com.backend.ejercicioOdontologoSpring.exceptions.ResourceNotFoundException;
 import com.backend.ejercicioOdontologoSpring.service.ITurnoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,6 +16,7 @@ public class TurnoController {
     private ITurnoService turnoService;
 
     public TurnoController(ITurnoService turnoService) {
+
         this.turnoService = turnoService;
     }
 
@@ -26,17 +26,17 @@ public class TurnoController {
     }*/
 
     @GetMapping("/listar")
-    public ResponseEntity<List<TurnoDtoSalida>> listarTurnos (){
+    public ResponseEntity<List<TurnoSalidaDto>> listarTurnos (){
         return new ResponseEntity<>(turnoService.listarTurnos(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TurnoDtoSalida> buscarTurnoPorId(@PathVariable Long id){
+    public ResponseEntity<TurnoSalidaDto> buscarTurnoPorId(@PathVariable Long id){
         return new ResponseEntity<>(turnoService.buscarTurnoPorId(id), HttpStatus.OK);
     }
 
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<TurnoDtoSalida> actualizarDatosTurno(@RequestBody @Valid TurnoDtoEntrada turnoDtoEntrada, @PathVariable Long id){
+    public ResponseEntity<TurnoSalidaDto> actualizarDatosTurno(@RequestBody @Valid TurnoEntradaDto turnoDtoEntrada, @PathVariable Long id){
         return new ResponseEntity<>(turnoService.actualizarTurno(turnoDtoEntrada, id), HttpStatus.OK);
     }
 

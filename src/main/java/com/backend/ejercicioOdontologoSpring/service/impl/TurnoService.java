@@ -1,7 +1,8 @@
 package com.backend.ejercicioOdontologoSpring.service.impl;
 
-import com.backend.ejercicioOdontologoSpring.dto.entrada.TurnoDtoEntrada;
-import com.backend.ejercicioOdontologoSpring.dto.salida.TurnoDtoSalida;
+import com.backend.ejercicioOdontologoSpring.dto.entrada.TurnoEntradaDto;
+import com.backend.ejercicioOdontologoSpring.dto.salida.PacienteSalidaDto;
+import com.backend.ejercicioOdontologoSpring.dto.salida.TurnoSalidaDto;
 import com.backend.ejercicioOdontologoSpring.entitty.Turno;
 import com.backend.ejercicioOdontologoSpring.exceptions.ResourceNotFoundException;
 import com.backend.ejercicioOdontologoSpring.repository.TurnoRepository;
@@ -20,40 +21,46 @@ public class TurnoService implements ITurnoService {
     private final Logger LOGGER = LoggerFactory.getLogger(PacienteService.class);
     private final TurnoRepository turnoRepository;
     private final ModelMapper modelMapper;
+    private final PacienteService pacienteService;
+    private final OdontologoService odontologoService;
 
-    public TurnoService(TurnoRepository turnoRepository, ModelMapper modelMapper) {
+    public TurnoService(TurnoRepository turnoRepository, ModelMapper modelMapper, PacienteService pacienteService, OdontologoService odontologoService) {
         this.turnoRepository = turnoRepository;
         this.modelMapper = modelMapper;
+        this.pacienteService = pacienteService;
+        this.odontologoService = odontologoService;
     }
-
+//    public TurnoSalidaDto resgistrarTurno(TurnoEntradaDto turnoDtoEntrada){
+//       PacienteSalidaDto pacienteSalidaDto = pacienteService.buscarPacientePorId()
+//    }
     @Override
-    public List<TurnoDtoSalida> listarTurnos() {
-        List<TurnoDtoSalida> turnoDtoSalidas = turnoRepository.findAll()
+    public List<TurnoSalidaDto> listarTurnos() {
+        List<TurnoSalidaDto> turnoSalidaDtos = turnoRepository.findAll()
                 .stream()
-                .map(turno -> modelMapper.map(turno, TurnoDtoSalida.class))
+                .map(turno -> modelMapper.map(turno, TurnoSalidaDto.class))
                 .toList();
-        LOGGER.info("Listado turnos: {}", JsonPrinter.toString(turnoDtoSalidas));
-        return turnoDtoSalidas;
+        LOGGER.info("Listado turnos: {}", JsonPrinter.toString(turnoSalidaDtos));
+        return turnoSalidaDtos;
     }
 
     @Override
-    public TurnoDtoSalida buscarTurnoPorId(Long id) {
+    public TurnoSalidaDto buscarTurnoPorId(Long id) {
         Turno turnoBuscado = turnoRepository.findById(id).orElse(null);
         LOGGER.info("Turno buscado: {}", JsonPrinter.toString(turnoBuscado));
-        TurnoDtoSalida turnoDtoSalida = null;
+        TurnoSalidaDto turnoSalidaDto = null;
         if(turnoBuscado != null){
-            turnoDtoSalida = modelMapper.map(turnoBuscado, TurnoDtoSalida.class);
-            LOGGER.info("Turno encontrado: {}", JsonPrinter.toString(turnoDtoSalida));
+            turnoSalidaDto = modelMapper.map(turnoBuscado, TurnoSalidaDto.class);
+            LOGGER.info("Turno encontrado: {}", JsonPrinter.toString(turnoSalidaDto));
         } else LOGGER.error("No se ha encontrado al turno con id: {}", id);
 
-        return turnoDtoSalida;
+        return turnoSalidaDto;
     }
 
     @Override
-    public TurnoDtoSalida actualizarTurno(TurnoDtoEntrada turnoDtoEntrada, Long id) {
+    public TurnoSalidaDto actualizarTurno(TurnoEntradaDto turnoDtoEntrada, Long id) {
         Turno turnoParaActualizar = turnoRepository.findById(id).orElse(null);
         Turno turnoRecibido = modelMapper.map(turnoDtoEntrada, Turno.class);
-        TurnoDtoSalida turnoDtoSalida = null;
+        TurnoSalidaDto turnoSalidaDto = null;
 
         if(turnoParaActualizar != null){
             turnoRecibido.setId(turnoParaActualizar.getId());
@@ -63,11 +70,11 @@ public class TurnoService implements ITurnoService {
             turnoParaActualizar = turnoRecibido;
             turnoRepository.save(turnoParaActualizar);
 
-            turnoDtoSalida = modelMapper.map(turnoParaActualizar, TurnoDtoSalida.class);
-            LOGGER.warn("Paciente actualizado: {}", JsonPrinter.toString(turnoDtoSalida));
+            turnoSalidaDto = modelMapper.map(turnoParaActualizar, TurnoSalidaDto.class);
+            LOGGER.warn("Paciente actualizado: {}", JsonPrinter.toString(turnoSalidaDto));
 
         } else LOGGER.error("No fue posible actualizar el turno porque no se encuentra registrado");
-        return turnoDtoSalida;
+        return turnoSalidaDto;
     }
 
     @Override

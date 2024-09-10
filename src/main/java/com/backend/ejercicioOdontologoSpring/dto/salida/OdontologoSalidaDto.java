@@ -1,15 +1,15 @@
 package com.backend.ejercicioOdontologoSpring.dto.salida;
 
-public class OdontologoDtoSalida {
+public class OdontologoSalidaDto {
     private Long id;
     private int numeroMatricula;
     private String apellido;
     private String nombre;
 
-    public OdontologoDtoSalida() {
+    public OdontologoSalidaDto() {
     }
 
-    public OdontologoDtoSalida(Long id, int numeroMatricula, String apellido, String nombre) {
+    public OdontologoSalidaDto(Long id, int numeroMatricula, String apellido, String nombre) {
         this.id = id;
         this.numeroMatricula = numeroMatricula;
         this.apellido = apellido;

@@ -2,7 +2,7 @@ package com.backend.ejercicioOdontologoSpring.dto.entrada;
 
 import jakarta.validation.constraints.*;
 
-public class OdontologoDtoEntrada {
+public class OdontologoEntradaDto {
 
     @Positive(message = "El campo Número de Matrícula no puede estar vacío")
     @Digits(integer = 10, fraction = 0, message = "El campo Número de Matrícula debe tener una longitud máxima de 10")
@@ -16,10 +16,10 @@ public class OdontologoDtoEntrada {
     @Size(min = 3, max = 20, message = "El campo apellido debe tener mínimo 3 carácteres y máximo 20")
     private String nombre;
 
-    public OdontologoDtoEntrada() {
+    public OdontologoEntradaDto() {
     }
 
-    public OdontologoDtoEntrada(int numeroMatricula, String apellido, String nombre) {
+    public OdontologoEntradaDto(int numeroMatricula, String apellido, String nombre) {
         this.numeroMatricula = numeroMatricula;
         this.apellido = apellido;
         this.nombre = nombre;

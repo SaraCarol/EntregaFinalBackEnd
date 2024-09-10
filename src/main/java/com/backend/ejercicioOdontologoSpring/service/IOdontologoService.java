@@ -1,18 +1,18 @@
 package com.backend.ejercicioOdontologoSpring.service;
 
-import com.backend.ejercicioOdontologoSpring.dto.entrada.OdontologoDtoEntrada;
-import com.backend.ejercicioOdontologoSpring.dto.salida.OdontologoDtoSalida;
+import com.backend.ejercicioOdontologoSpring.dto.entrada.OdontologoEntradaDto;
+import com.backend.ejercicioOdontologoSpring.dto.salida.OdontologoSalidaDto;
 
 import java.util.List;
 
 public interface IOdontologoService {
-    OdontologoDtoSalida registrarOdontologo(OdontologoDtoEntrada odontologoAregistrar);
+    OdontologoSalidaDto registrarOdontologo(OdontologoEntradaDto odontologoAregistrar);
 
-    List<OdontologoDtoSalida> listarOdontologos();
+    List<OdontologoSalidaDto> listarOdontologos();
 
-    OdontologoDtoSalida buscarOdontologoPorId(Long id);
+    OdontologoSalidaDto buscarOdontologoPorId(Long id);
 
-    OdontologoDtoSalida actualizarOdontologo(OdontologoDtoEntrada odontologoDtoEntrada, Long id);
+    OdontologoSalidaDto actualizarOdontologo(OdontologoEntradaDto odontologoDtoEntrada, Long id);
 
     void eliminarOdontologo(Long id);
 }

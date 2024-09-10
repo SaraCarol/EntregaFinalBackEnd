@@ -1,6 +1,6 @@
 package com.backend.ejercicioOdontologoSpring.dto.salida;
 
-public class DomicilioDtoSalida {
+public class DomicilioSalidaDto {
 
     private String calle;
 
@@ -10,10 +10,10 @@ public class DomicilioDtoSalida {
 
     private String provincia;
 
-    public DomicilioDtoSalida() {
+    public DomicilioSalidaDto() {
     }
 
-    public DomicilioDtoSalida(String calle, int numero, String localidad, String provincia) {
+    public DomicilioSalidaDto(String calle, int numero, String localidad, String provincia) {
         this.calle = calle;
         this.numero = numero;
         this.localidad = localidad;

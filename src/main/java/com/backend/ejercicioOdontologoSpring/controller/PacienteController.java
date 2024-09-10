@@ -1,7 +1,7 @@
 package com.backend.ejercicioOdontologoSpring.controller;
 
-import com.backend.ejercicioOdontologoSpring.dto.entrada.PacienteDtoEntrada;
-import com.backend.ejercicioOdontologoSpring.dto.salida.PacienteDtoSalida;
+import com.backend.ejercicioOdontologoSpring.dto.entrada.PacienteEntradaDto;
+import com.backend.ejercicioOdontologoSpring.dto.salida.PacienteSalidaDto;
 import com.backend.ejercicioOdontologoSpring.exceptions.ResourceNotFoundException;
 import com.backend.ejercicioOdontologoSpring.service.IPacienteService;
 import jakarta.validation.Valid;
@@ -21,22 +21,22 @@ public class PacienteController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<PacienteDtoSalida> registrarPaciente(@RequestBody @Valid PacienteDtoEntrada pacienteDtoEntrada){
+    public ResponseEntity<PacienteSalidaDto> registrarPaciente(@RequestBody @Valid PacienteEntradaDto pacienteDtoEntrada){
         return new ResponseEntity<>(pacienteService.registrarPaciente(pacienteDtoEntrada), HttpStatus.CREATED);
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<PacienteDtoSalida>> listarPacientes (){
+    public ResponseEntity<List<PacienteSalidaDto>> listarPacientes (){
         return new ResponseEntity<>(pacienteService.listarPacientes(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteDtoSalida> buscarPacientePorId(@PathVariable Long id){
+    public ResponseEntity<PacienteSalidaDto> buscarPacientePorId(@PathVariable Long id){
         return new ResponseEntity<>(pacienteService.buscarPacientePorId(id), HttpStatus.OK);
     }
 
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<PacienteDtoSalida> actualizarDatosPaciente(@RequestBody @Valid PacienteDtoEntrada pacienteDtoEntrada, @PathVariable Long id){
+    public ResponseEntity<PacienteSalidaDto> actualizarDatosPaciente(@RequestBody @Valid PacienteEntradaDto pacienteDtoEntrada, @PathVariable Long id){
         return new ResponseEntity<>(pacienteService.actualizarPaciente(pacienteDtoEntrada, id), HttpStatus.OK);
     }
 

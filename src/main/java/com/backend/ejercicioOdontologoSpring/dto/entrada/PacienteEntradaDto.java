@@ -1,13 +1,12 @@
 package com.backend.ejercicioOdontologoSpring.dto.entrada;
 
-import com.backend.ejercicioOdontologoSpring.entitty.Domicilio;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
-public class PacienteDtoEntrada {
+public class PacienteEntradaDto {
 
     @NotBlank(message = "El campo nombre no puede estar vacío")
     @Size(min = 3, max = 20, message = "El campo nombre debe tener mínimo 3 carácteres y máximo 20")
@@ -27,17 +26,17 @@ public class PacienteDtoEntrada {
 
     @NotNull(message = "El domicilio del paciente no puede ser nulo")
     @Valid
-    private Domicilio domicilio;
+    private DomicilioEntradaDto domicilioEntradaDto;
 
-    public PacienteDtoEntrada() {
+    public PacienteEntradaDto() {
     }
 
-    public PacienteDtoEntrada(String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
+    public PacienteEntradaDto(String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioEntradaDto domicilioEntradaDto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.fechaIngreso = fechaIngreso;
-        this.domicilio = domicilio;
+        this.domicilioEntradaDto = domicilioEntradaDto;
     }
 
     public String getNombre() {
@@ -72,11 +71,11 @@ public class PacienteDtoEntrada {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Domicilio getDomicilio() {
-        return domicilio;
+    public DomicilioEntradaDto getDomicilioEntradaDto() {
+        return domicilioEntradaDto;
     }
 
-    public void setDomicilio(Domicilio domicilio) {
-        this.domicilio = domicilio;
+    public void setDomicilio(DomicilioEntradaDto domicilioEntradaDto) {
+        this.domicilioEntradaDto = domicilioEntradaDto;
     }
 }

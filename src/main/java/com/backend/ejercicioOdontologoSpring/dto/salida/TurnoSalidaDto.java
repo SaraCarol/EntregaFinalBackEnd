@@ -2,14 +2,14 @@ package com.backend.ejercicioOdontologoSpring.dto.salida;
 
 import java.time.LocalDate;
 
-public class TurnoDtoSalida {
+public class TurnoSalidaDto {
     private Long id;
-    private TurnoOdontologoDtoSalida odontologoSalida;
-    private TurnoPacienteDtoSalida pacienteDtoSalida;
+    private TurnoOdontologoSalidaDto odontologoSalida;
+    private TurnoPacienteSalidaDto pacienteDtoSalida;
     private LocalDate fechaTurno;
     private LocalDate horaTurno;
 
-    public TurnoDtoSalida() {
+    public TurnoSalidaDto() {
     }
     
 }

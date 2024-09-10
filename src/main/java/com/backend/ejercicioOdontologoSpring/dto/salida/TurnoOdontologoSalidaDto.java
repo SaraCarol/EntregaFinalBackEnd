@@ -1,13 +1,13 @@
 package com.backend.ejercicioOdontologoSpring.dto.salida;
 
-public class TurnoOdontologoDtoSalida {
+public class TurnoOdontologoSalidaDto {
     private String apellido;
     private String nombre;
 
-    public TurnoOdontologoDtoSalida() {
+    public TurnoOdontologoSalidaDto() {
     }
 
-    public TurnoOdontologoDtoSalida(String apellido, String nombre) {
+    public TurnoOdontologoSalidaDto(String apellido, String nombre) {
         this.apellido = apellido;
         this.nombre = nombre;
     }

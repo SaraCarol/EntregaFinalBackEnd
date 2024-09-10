@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
-public class DomicilioDtoEntrada {
+public class DomicilioEntradaDto {
     @NotBlank(message = "Se debe completar el campo Calle")
     @Size(min = 1, max = 10, message = "El campo Calle debe tener mínimo 1 carácter y máximo 10")
     private String calle;
@@ -22,10 +22,10 @@ public class DomicilioDtoEntrada {
     @Size(min = 1, max = 10, message = "El campo Provincia debe tener mínimo 1 carácter y máximo 10")
     private String provincia;
 
-    public DomicilioDtoEntrada() {
+    public DomicilioEntradaDto() {
     }
 
-    public DomicilioDtoEntrada(String calle, int numero, String localidad, String provincia) {
+    public DomicilioEntradaDto(String calle, int numero, String localidad, String provincia) {
         this.calle = calle;
         this.numero = numero;
         this.localidad = localidad;
